@@ -1,4 +1,5 @@
 import React, { Component } from  'react';
+import ToDoItems from 'ToDoItems';
 
 class ToDoList extends Component {
   constructor(props){
@@ -27,6 +28,7 @@ class ToDoList extends Component {
             type="text"
             placeholder='enter task'/>
           <button type='submit'>add</button>
+          <TodoItems />
         </form>
         </div>
       </div>
