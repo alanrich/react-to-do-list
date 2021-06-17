@@ -1,4 +1,5 @@
 import React, { Component } from  'react';
+import FlipMove from 'react-flip-move';
 
 class ToDoItems extends Component {
 // func will be used to render state to DOM by mapping the array of tasks
@@ -13,7 +14,9 @@ class ToDoItems extends Component {
     return(
     // render that array
       <ul className='theList'>
+        <FlipMove duration={250} easing='ease-out'>
         {listItems}
+        </FlipMove>
       </ul>
     );
   };
