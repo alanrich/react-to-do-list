@@ -2,9 +2,23 @@ import React, { Component } from  'react';
 import FlipMove from 'react-flip-move';
 
 class ToDoItems extends Component {
-// func will be used to render state to DOM by mapping the array of tasks
+
+  constructor(props){
+    super(props)
+    // Using 'this' in the onClick delete handler necessitates this line
+    this.createTasks = this.createTasks.bind(this);
+  }
+  // call the delete func passed into this component via props
+  callDeleteFunction(key){
+    this.props.callDeleteFunction(key);
+  }
+  // func will be used to render state to DOM by mapping the array of tasks
   createTasks(item) {
-    return <li key={item.key}>{item.text}</li>
+    return <li key={item.key}
+              // Give each rendered task the ability to delete itself
+               onClick={()=>this.callDeleteFunction(item.key)}>
+              {item.text}
+          </li>
   };
   render() {
     // assign the state items array to a variable

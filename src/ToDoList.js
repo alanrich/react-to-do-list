@@ -7,8 +7,9 @@ class ToDoList extends Component {
     this.state={
       items: [],
     };
+    // Dont forget, any method implementing 'this' must be bound to this
     this.addItem = this.addItem.bind(this);
-
+    this.deleteItem = this.deleteItem.bind(this);
   };
   // App Methods
   addItem(e){
@@ -34,6 +35,15 @@ class ToDoList extends Component {
     e.preventDefault();
   };
 
+  deleteItem(someKey){
+    let filteredTasks = this.state.items.filter(function(item) {
+      return (item.key !== someKey);
+    });
+    this.setState({
+      items: filteredTasks
+    });
+  };
+
 
   render() {
     return (
@@ -47,7 +57,8 @@ class ToDoList extends Component {
             type="text"
             placeholder='enter task'/>
           <button type='submit'>add</button>
-          <ToDoItems entries={this.state.items}/>
+          <ToDoItems entries={this.state.items}
+                     callDeleteFunction={this.deleteItem}/>
         </form>
         </div>
       </div>
